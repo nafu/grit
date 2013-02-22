@@ -611,6 +611,14 @@ module Grit
       self.git.archive(options, treeish, "| gzip -n")
     end
 
+    def archive_zip(treeish = 'master', prefix = nil, output = 'archive.zip')
+      options = {}
+      options[:format] = "zip"
+      options[:output] = output if output
+      options[:prefix] = prefix if prefix
+      self.git.archive(options, treeish)
+    end
+
     # Write an archive directly to a file
     #   +treeish+ is the treeish name/id (default 'master')
     #   +prefix+ is the optional prefix (default nil)
